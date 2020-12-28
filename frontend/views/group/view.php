@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\data\ActiveDataProvider;
+use common\models\Student;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Group */
@@ -9,6 +12,10 @@ use yii\widgets\DetailView;
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Группы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$studentQuery = Student::find()->where(['student_id' => $model->id]);
+$studentActiveProvider = new ActiveDataProvider([
+    'query' => $studentQuery
+]);
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="group-view">
@@ -33,5 +40,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
         ],
     ]) ?>
+
+Студенты
+    <?= GridView::widget([
+        'dataProvider' => $studentActiveProvider,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            'id',
+            'last_name',
+            'first_name',
+        ],
+    ]); ?>
 
 </div>
