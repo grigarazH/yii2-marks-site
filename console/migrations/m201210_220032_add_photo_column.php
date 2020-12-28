@@ -21,7 +21,7 @@ class m201210_220032_add_photo_column extends Migration
     public function safeDown()
     {
         $this->dropColumn("student", "photo");
-        return false;
+        return true;
     }
 
     /*
