@@ -12,7 +12,7 @@ use yii\grid\GridView;
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Группы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-$studentQuery = Student::find()->where(['student_id' => $model->id]);
+$studentQuery = Student::find()->where(['groupId' => $model->id]);
 $studentActiveProvider = new ActiveDataProvider([
     'query' => $studentQuery
 ]);
